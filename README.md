@@ -1,0 +1,2 @@
+# apicall
+使用golang实现的使用sim800模块打电话的接口,用来作为zabbix的报警接口
