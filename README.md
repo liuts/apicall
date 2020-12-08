@@ -1,5 +1,6 @@
 # apicall
 
+
 使用golang实现的使用sim800模块打电话的接口,用来作为zabbix的报警接口.
 运行流程:程序启动后,http接收到电话号码后,会放到一个channel当中,打电话的协程会从channel中取出
 电话号码,调用串口子程序打电话.串口的收发使用github.com/vadimipatov/gcircularqueue做环形队列.减少因干扰造成数据
@@ -9,6 +10,7 @@
 
 ### 一 需要准备的模块:
 
+![image](https://raw.githubusercontent.com/liuts/apicall/master/%E6%A8%A1%E5%9D%97%E5%9B%BE%E7%89%87.jpg?raw=true)
 ##### 1,准备一个sim800芯片的模组,我用的是"USB转GSM串口GPRSSIM800C模块"
 
 ##### 2,一张GSM的电话卡
