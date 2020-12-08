@@ -10,7 +10,7 @@
 
 ### 一 需要准备的模块:
 
-![image](https://raw.githubusercontent.com/liuts/apicall/master/%E6%A8%A1%E5%9D%97%E5%9B%BE%E7%89%87.jpg?raw=true)
+![image](https://raw.githubusercontent.com/liuts/apicall/master/sim800.png?raw=true)
 ##### 1,准备一个sim800芯片的模组,我用的是"USB转GSM串口GPRSSIM800C模块"
 
 ##### 2,一张GSM的电话卡
