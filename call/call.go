@@ -90,7 +90,7 @@ func Make_call(phone string) {
 	ok = sendCommand("AT+MORING=1", "OK", 10, 2)
 	//Modem_Port.Flush()
 
-	ok = sendCommand("ATD"+phone+";", "MO CONNECTED", 150, 1)
+	ok = sendCommand("ATD"+phone+";", "MO CONNECTED", 100, 1)
 	//Modem_Port.Flush()
 	if ok != true {
 		ok = sendCommand("ATH", "OK", 10, 2)
@@ -98,11 +98,11 @@ func Make_call(phone string) {
 		log.Println("zhi xing jie guo", ok, Queue.Len())
 	}
 	time.Sleep(1 * time.Second)
-	ok = sendCommand("AT+CTTS=2,\"import message\"", "+CTTS: 0", 150, 2)
+	ok = sendCommand("AT+CTTS=2,\"import message\"", "+CTTS: 0", 100, 2)
 	//Modem_Port.Flush()
 
 	time.Sleep(1 * time.Second)
-	ok = sendCommand("AT+CTTS=2,\"import message\"", "+CTTS: 0", 150, 2)
+	ok = sendCommand("AT+CTTS=2,\"import message\"", "+CTTS: 0", 100, 2)
 	//Modem_Port.Flush()
 
 	time.Sleep(2 * time.Second)
