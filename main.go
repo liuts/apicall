@@ -34,6 +34,10 @@ func main() {
 	router := gin.Default()
 	router.GET("/call", handlerCall)
 	router.GET("/clean", handlerClean)
+	router.GET("/phonechan/status", handlerPhoneChanStatus) // 新增状态接口
+
+	// 配置静态文件服务（用于前端页面）
+	router.Static("/static", "./static")
 
 	router.Run(":" + httpPort)
 }
@@ -73,4 +77,24 @@ func handlerCall(c *gin.Context) {
 		})
 		PhoneChan <- phone
 	}
+}
+
+func handlerPhoneChanStatus(c *gin.Context) {
+	// 获取当前队列长度
+	length := len(PhoneChan)
+	// 复制队列内容（避免阻塞主协程，使用临时通道）
+	tempChan := make(chan string, length)
+	for i := 0; i < length; i++ {
+		tempChan <- <-PhoneChan
+	}
+	// 恢复原队列内容
+	for i := 0; i < length; i++ {
+		val := <-tempChan
+		PhoneChan <- val
+	}
+	// 返回状态信息
+	c.JSON(http.StatusOK, gin.H{
+		"length":  length,
+		"content": PhoneChan,
+	})
 }

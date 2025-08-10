@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhoneChan监控</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>PhoneChan状态监控</h1>
+    <div>当前队列长度：<span id="length"></span></div>
+    <div>队列内容：<pre id="content"></pre></div>
+
+    <script>
+        function updateStatus() {
+            fetch('/phonechan/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('length').textContent = data.length;
+                    document.getElementById('content').textContent = JSON.stringify(data.content, null, 2);
+                });
+        }
+        // 每2秒刷新一次
+        setInterval(updateStatus, 2000);
+        // 初始加载
+        updateStatus();
+    </script>
+</body>
+</html>
